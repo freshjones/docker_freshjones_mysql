@@ -10,7 +10,7 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
-ROOTPASS= $(pwgen -s 12 1)
+ROOTPASS=$(pwgen -s 12 1)
 ADMINPASS=$(pwgen -s 12 1)
 
 mysqladmin -u root password $ROOTPASS
