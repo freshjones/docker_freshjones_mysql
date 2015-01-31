@@ -10,10 +10,7 @@ while [[ RET -ne 0 ]]; do
     RET=$?
 done
 
-ROOTPASS=$(pwgen -s 12 1)
 ADMINPASS=$(pwgen -s 12 1)
-
-mysqladmin -u root password $ROOTPASS
 
 echo "=> Creating MySQL admin user with random password"
 
@@ -31,6 +28,10 @@ echo "Please remember to change the above password as soon as possible!"
 echo "MySQL user 'root' has no password but only allows local connections"
 echo "========================================================================"
 
-echo "Root pwd is $ROOTPASS"
 
+echo "secure root"
+ROOTPASS=$(pwgen -s 12 1)
+mysqladmin -u root password $ROOTPASS
+
+echo "Root pwd is $ROOTPASS"
 mysqladmin -uroot -p$ROOTPASS shutdown
